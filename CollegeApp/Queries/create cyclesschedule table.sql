@@ -1,0 +1,7 @@
+CREATE TABLE CyclesSchedule (
+    ID INT IDENTITY PRIMARY KEY,
+    CycleID INT FOREIGN KEY REFERENCES Cycles(ID),
+    DayInWeek INT,
+    TimeInDay VARCHAR(50),
+    CONSTRAINT CTDup UNIQUE(CycleID, DayInWeek, TimeInDay)
+)

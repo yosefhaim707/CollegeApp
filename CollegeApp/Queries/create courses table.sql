@@ -1,0 +1,5 @@
+CREATE TABLE Courses (
+    ID INT IDENTITY PRIMARY KEY,
+    CourseName VARCHAR(50) NOT NULL,
+    CONSTRAINT CName UNIQUE(CourseName)
+);

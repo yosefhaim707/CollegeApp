@@ -1,4 +1,5 @@
 ﻿using CollegeApp.Repositories;
+using CollegeApp.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,10 +16,13 @@ namespace CollegeApp.Forms
     {
         // Initialize a repository instance
         Repository repository;
-        public Enter()
+        // Initialize a DBContex
+        public DBContex dBContex;
+        public Enter(DBContex dBContex)
         {
             // Initialize the repository
-            repository = new Repository();
+            this.dBContex = dBContex;
+            repository = new Repository(dBContex);
             
             InitializeComponent();
         }
@@ -38,7 +42,7 @@ namespace CollegeApp.Forms
             {
                 MessageBox.Show("Please fill the name and id fields");
             }
-            else if ()
+            
         }
     }
 }

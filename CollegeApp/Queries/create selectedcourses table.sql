@@ -1,0 +1,6 @@
+CREATE TABLE SelectedCourses (
+    ID INT IDENTITY PRIMARY KEY,
+    CycleID INT FOREIGN KEY REFERENCES Cycles(ID),
+    StudentID INT FOREIGN KEY REFERENCES Students(ID),
+    IsPaid BIT    
+);

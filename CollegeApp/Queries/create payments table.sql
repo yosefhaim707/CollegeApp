@@ -1,0 +1,4 @@
+CREATE TABLE Payments (
+    ID INT IDENTITY PRIMARY KEY,
+    SelectedCourseID INT FOREIGN KEY REFERENCES SelectedCourses(ID)
+);
