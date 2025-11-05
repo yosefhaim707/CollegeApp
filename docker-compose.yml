@@ -1,0 +1,41 @@
+version: '3.9'
+services:
+  mongo:
+    image: mongo:6.0
+    restart: unless-stopped
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo-data:/data/db
+  redis:
+    image: redis:7.2
+    restart: unless-stopped
+    ports:
+      - '6379:6379'
+  server:
+    build:
+      context: .
+      dockerfile: apps/server/Dockerfile
+    environment:
+      MONGO_URI: mongodb://mongo:27017/f1_stats_suite
+      REDIS_URL: redis://redis:6379
+      JWT_SECRET: changeme
+      PORT: 8080
+    depends_on:
+      - mongo
+      - redis
+    ports:
+      - '8080:8080'
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    environment:
+      VITE_API_BASE_URL: http://server:8080
+      VITE_WS_URL: ws://server:8080/live
+    depends_on:
+      - server
+    ports:
+      - '5173:4173'
+volumes:
+  mongo-data: {}

@@ -1,0 +1,61 @@
+openapi: 3.1.0
+info:
+  title: F1 Stats Suite API
+  version: 0.1.0
+servers:
+  - url: http://localhost:8080
+paths:
+  /v1/drivers:
+    get:
+      summary: List drivers
+      parameters:
+        - in: query
+          name: search
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Driver'
+  /v1/auth/login:
+    post:
+      summary: Login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Auth tokens
+components:
+  schemas:
+    Driver:
+      type: object
+      properties:
+        driverId:
+          type: string
+        givenName:
+          type: string
+        familyName:
+          type: string
+    LoginRequest:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
