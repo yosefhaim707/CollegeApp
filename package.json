@@ -1,0 +1,24 @@
+{
+  "name": "f1-stats-suite",
+  "private": true,
+  "packageManager": "pnpm@8.15.4",
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "typecheck": "turbo run typecheck",
+    "format": "prettier --write .",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "husky": "9.0.10",
+    "lint-staged": "15.2.2",
+    "prettier": "3.2.5",
+    "turbo": "1.12.5"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": ["pnpm lint"],
+    "*.{json,md,yml,yaml}": ["prettier --check"]
+  }
+}
